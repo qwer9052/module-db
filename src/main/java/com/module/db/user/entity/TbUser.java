@@ -1,4 +1,4 @@
-package com.module.db.entity.user;
+package com.module.db.user.entity;
 
 
 import com.module.db.base.BaseEntity;
@@ -18,8 +18,7 @@ public class TbUser extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long id;
+    private Long userId;
     private String pwd, email, name;
 
 

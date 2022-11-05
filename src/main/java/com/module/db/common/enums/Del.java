@@ -1,4 +1,4 @@
-package com.module.db.enums.common;
+package com.module.db.common.enums;
 
 
 import lombok.Getter;

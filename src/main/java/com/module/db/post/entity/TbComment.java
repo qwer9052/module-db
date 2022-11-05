@@ -1,8 +1,8 @@
-package com.module.db.entity.post;
+package com.module.db.post.entity;
 
 import com.module.db.base.BaseEntity;
-import com.module.db.entity.user.TbUser;
-import com.module.db.enums.common.Del;
+import com.module.db.user.entity.TbUser;
+import com.module.db.common.enums.Del;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -21,8 +21,7 @@ public class TbComment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_id")
-    private Long id;
+    private Long commentId;
 
     private String content;
 
@@ -31,15 +30,15 @@ public class TbComment extends BaseEntity {
     private Del del;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     private TbUser tbUser;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "postId")
     private TbPost tbPost;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id", referencedColumnName = "comment_id")
+    @JoinColumn(name = "parent_id", referencedColumnName = "commentId")
     private TbComment parent;
 
     @Builder.Default

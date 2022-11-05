@@ -1,7 +1,7 @@
-package com.module.db.enums.post;
+package com.module.db.post.enums;
 
 
-import com.module.db.enums.common.EnumMapperType;
+import com.module.db.common.enums.EnumMapperType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
