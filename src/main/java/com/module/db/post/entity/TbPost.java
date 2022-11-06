@@ -25,22 +25,26 @@ public class TbPost extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
+    @Column(nullable = false)
     private String title;
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "LONGTEXT",nullable = false)
     private String content;
 
     @Column(columnDefinition = "TINYINT")
     @ColumnDefault("'0'")
     private PostType postType;
 
-    @Column(columnDefinition = "TINYINT")
+    @Column(columnDefinition = "TINYINT", nullable = false)
     @ColumnDefault("'0'")
-    private Del del;
-
     @Builder.Default
-    @OneToMany(mappedBy = "tbPost")
-    List<TbPostLike> postLikes = new ArrayList<>();
+    private Del del = Del.N;
+
+    @OneToMany(mappedBy = "tbPost", cascade = CascadeType.ALL)
+    List<TbPostLike> postLikes;
+
+    @OneToMany(mappedBy = "tbPost", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TbComment> comments;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")

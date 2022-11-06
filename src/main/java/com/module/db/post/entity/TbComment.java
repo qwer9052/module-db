@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @DynamicInsert
-@Builder
+@Builder(builderMethodName = "TbCommentBuilder")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
@@ -23,26 +23,32 @@ public class TbComment extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
+    @Column(nullable = false)
     private String content;
 
-    @Column(columnDefinition = "TINYINT")
+    @Column(columnDefinition = "TINYINT", nullable = false)
     @ColumnDefault("'0'")
-    private Del del;
+    @Builder.Default
+    private Del del = Del.N;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private TbUser tbUser;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "postId")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "postId", nullable = false)
     private TbPost tbPost;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id", referencedColumnName = "commentId")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "parent_id")
     private TbComment parent;
 
     @Builder.Default
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TbComment> children = new ArrayList<>();
+
+    public void updateParent(TbComment tbComment){
+        this.parent = tbComment;
+    }
 
 }

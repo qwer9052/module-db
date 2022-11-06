@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,4 +25,5 @@ public class TbPostDto {
     private Del del;
     private LocalDateTime creDt;
     private LocalDateTime updDt;
+    private List<TbCommentDto> comments;
 }
