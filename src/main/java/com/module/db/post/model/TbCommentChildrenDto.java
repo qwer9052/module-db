@@ -1,20 +1,21 @@
 package com.module.db.post.model;
 
 import com.module.db.common.enums.Del;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.module.db.user.model.TbUserDto;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class TbCommentChildrenDto {
 
     private Long commentId;
-    private Long userId;
+    private TbUserDto tbUser;
     private Del del;
 
     private String content;

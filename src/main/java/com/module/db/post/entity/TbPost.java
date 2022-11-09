@@ -28,7 +28,7 @@ public class TbPost extends BaseEntity {
     @Column(nullable = false)
     private String title;
 
-    @Column(columnDefinition = "LONGTEXT",nullable = false)
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String content;
 
     @Column(columnDefinition = "TINYINT")
@@ -43,13 +43,12 @@ public class TbPost extends BaseEntity {
     @OneToMany(mappedBy = "tbPost", cascade = CascadeType.ALL)
     List<TbPostLike> postLikes;
 
-    @OneToMany(mappedBy = "tbPost", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "tbPost", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<TbComment> comments;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private TbUser tbUser;
-
 
 
 }
