@@ -15,22 +15,19 @@ import javax.persistence.*;
 @AllArgsConstructor
 @DynamicInsert
 @Builder(builderMethodName = "TbBoardLikeBuilder")
-public class TbPostLike extends BaseEntity {
+public class TbLike extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postLikeId;
+    private Long likeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private TbUser tbUser;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "postId")
-    private TbPost tbPost;
-
-    @Column(columnDefinition = "TINYINT")
+    @Column(columnDefinition = "TINYINT", nullable = false)
     @ColumnDefault("'0'")
-    private Del del;
+    @Builder.Default
+    private Del del = Del.N;
 
 }
