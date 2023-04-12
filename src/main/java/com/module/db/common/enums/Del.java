@@ -32,4 +32,8 @@ public enum Del implements EnumMapperType {
         return CACHE_TYPE.get(type);
     }
 
+    public static Del valueChange(Del del){
+        return del.equals(Del.N) ? Del.Y : Del.N;
+    }
+
 }

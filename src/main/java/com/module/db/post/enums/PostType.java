@@ -13,9 +13,18 @@ import java.util.stream.Stream;
 public enum PostType implements EnumMapperType {
 
     ETC(0, "기타"),
-    FREE(1, "자유"),
-    COMPANY(2, "회사"),
-    FOOD(3, "먹방");
+    FREE(1, "자유"),//
+    COMPANY(2, "회사"),//
+    FOOD(3, "먹방"),//
+    REAL_ESTATE(4, "부동산"),//
+    STOCK(5, "주식/투지"),//
+    DATE(6, "썸연애"),//
+    HOBBY(7, "취미"),//
+    SHOPPING(8, "쇼핑"),//
+    PET(9, "반려동물"),//
+    SPORTS(10, "스포츠"),//
+    MILITARY(11, "군대"),//
+    RECRUITMENT(12, "채용");
 
     @Getter
     private final int type;
@@ -31,6 +40,7 @@ public enum PostType implements EnumMapperType {
     public static PostType valueOfName(String name) {
         return CACHE_NAME.get(name);
     }
+
     public static PostType valueOfType(Integer type) {
         return CACHE_TYPE.get(type);
     }

@@ -39,9 +39,8 @@ public class TbPost extends BaseEntity {
     @Builder.Default
     private Del del = Del.N;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "likeId")
-    List<TbLike> likes;
+    @OneToMany(mappedBy = "tbPost", fetch = FetchType.LAZY)
+    List<TbPostLike> tbPostLikes;
 
     @OneToMany(mappedBy = "tbPost", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<TbComment> comments;
@@ -50,5 +49,11 @@ public class TbPost extends BaseEntity {
     @JoinColumn(name = "userId")
     private TbUser tbUser;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "postHistoryId")
+    private TbPostHistory tbPostHistory;
 
+    public void setTbPostHistory(TbPostHistory tbPostHistory) {
+        this.tbPostHistory = tbPostHistory;
+    }
 }

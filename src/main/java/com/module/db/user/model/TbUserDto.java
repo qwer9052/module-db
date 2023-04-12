@@ -7,6 +7,7 @@ import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,14 +15,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class TbUserDto {
+public class TbUserDto implements Serializable {
 
     private Long userId;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String pwd;
 
-    private String email, name;
+    private String email, name, gmailAuth;
 
     private LocalDateTime creDt;
 

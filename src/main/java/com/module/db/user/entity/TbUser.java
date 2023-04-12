@@ -19,7 +19,7 @@ public class TbUser extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-    private String pwd, email, name;
+    private String pwd, email, name, gmailAuth;
 
 
 

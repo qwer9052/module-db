@@ -35,6 +35,9 @@ public class TbComment extends BaseEntity {
     @JoinColumn(name = "userId")
     private TbUser tbUser;
 
+    @OneToMany(mappedBy = "tbComment",fetch = FetchType.LAZY)
+    List<TbCommentLike> tbCommentLikes;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "postId")
     private TbPost tbPost;
